@@ -83,7 +83,7 @@ class MangoSimpleClient {
       process.env.PRIVATE_KEY_PATH || os.homedir() + "/.config/solana/id.json";
     logger.info(`- loading private key at location ${privateKeyPath}`);
     const owner = new Account(
-      JSON.parse(fs.readFileSync(privateKeyPath, "utf-8"))
+      JSON.parse(process.env.MANGO_SERVICE_SPK ?? fs.readFileSync(privateKeyPath, "utf-8"))
     );
 
     logger.info(`- fetching mango accounts for ${owner.publicKey.toBase58()}`);
